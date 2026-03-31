@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Marks Calculator</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  background:#121212;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+}
+
+.container{
+  background:#1e1e1e;
+  padding:20px;
+  border-radius:10px;
+  width:350px;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border:none;
+  border-radius:5px;
+}
+
+button{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  color:white;
+}
+
+.add{ background:#3498db; }
+.calc{ background:#1db954; }
+.reset{ background:red; }
+
+.result{
+  margin-top:15px;
+  text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Marks Calculator</h2>
+
+  <!-- ONE INPUT -->
+  <input type="text" id="marksInput" placeholder="Enter marks (e.g. 50,60,70)">
+
+  <button class="add" onclick="addMarks()">Add Marks</button>
+  <button class="calc" onclick="calculate()">Calculate</button>
+  <button class="reset" onclick="resetFields()">Reset</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+let marksArray = [];
+
+function addMarks() {
+  let input = document.getElementById("marksInput").value;
+
+  if (input === "") {
+    alert("Enter marks!");
+    return;
+  }
+
+  // Convert string → array
+  marksArray = input.split(",").map(num => Number(num.trim()));
+
+  document.getElementById("result").innerHTML =
+    "Marks Array: [" + marksArray.join(", ") + "]";
+}
+
+function calculate() {
+  if (marksArray.length === 0) {
+    alert("Click Add Marks first!");
+    return;
+  }
+
+  let total = marksArray.reduce((a, b) => a + b, 0);
+  let percentage = total / marksArray.length;
+
+  document.getElementById("result").innerHTML +=
+    "<br>Total: " + total +
+    "<br>Percentage: " + percentage + "%";
+}
+
+function resetFields() {
+  document.getElementById("marksInput").value = "";
+  document.getElementById("result").innerHTML = "";
+  marksArray = [];
+}
+</script>
+
+</body>
+</html>
