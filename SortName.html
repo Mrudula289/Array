@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sort Names Alphabetically</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .box {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>5. Sort Names Alphabetically</h2>
+
+  <input type="text" id="nameInput" placeholder="Enter a name">
+  <button onclick="addName()">Add Name</button>
+  <button onclick="sortNames()">Sort</button>
+
+  <div class="box">
+    <h3>Sorted Names</h3>
+    <p id="output"></p>
+  </div>
+
+  <script>
+    let names = [];
+
+    function addName() {
+      const input = document.getElementById("nameInput");
+      const value = input.value.trim();
+
+      if (value !== "") {
+        names.push(value);
+        input.value = "";
+      } else {
+        alert("Enter a valid name");
+      }
+    }
+
+    function sortNames() {
+      // Sort alphabetically (case insensitive)
+      names.sort((a, b) => a.localeCompare(b));
+
+      document.getElementById("output").innerText = names.join(", ");
+    }
+  </script>
+
+</body>
+</html>

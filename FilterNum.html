@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filter Even and Odd Numbers</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .box {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>4. Filter Even and Odd Numbers</h2>
+
+  <input type="number" id="numberInput" placeholder="Enter a number">
+  
+  <button onclick="addNumber()">Add Number</button>
+  <button onclick="showEven()">Show Even</button>
+  <button onclick="showOdd()">Show Odd</button>
+  <button onclick="clearAll()">Clear</button>
+
+  <div class="box">
+    <h3>Even Numbers</h3>
+    <p id="evenOutput"></p>
+  </div>
+
+  <div class="box">
+    <h3>Odd Numbers</h3>
+    <p id="oddOutput"></p>
+  </div>
+
+  <script>
+    let numbers = [];
+
+    function addNumber() {
+      const input = document.getElementById("numberInput");
+      const value = parseInt(input.value);
+
+      if (!isNaN(value)) {
+        numbers.push(value);
+        input.value = "";
+      } else {
+        alert("Please enter a valid number");
+      }
+    }
+
+    function showEven() {
+      const even = numbers.filter(num => num % 2 === 0);
+      document.getElementById("evenOutput").innerText = even.join(", ");
+    }
+
+    function showOdd() {
+      const odd = numbers.filter(num => num % 2 !== 0);
+      document.getElementById("oddOutput").innerText = odd.join(", ");
+    }
+
+    function clearAll() {
+      numbers = [];
+      document.getElementById("evenOutput").innerText = "";
+      document.getElementById("oddOutput").innerText = "";
+    }
+  </script>
+
+</body>
+</html>
